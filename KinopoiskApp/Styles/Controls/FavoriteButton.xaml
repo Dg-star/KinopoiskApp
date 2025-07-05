@@ -1,19 +1,58 @@
-﻿<ResourceDictionary
+﻿<!-- 
+    ResourceDictionary для стилей кастомных контролов
+    Содержит полный стиль для FavoriteButton с анимациями и состояниями
+    
+    Основные компоненты:
+    - Полный ControlTemplate для FavoriteButton
+    - Визуальные состояния (Normal, PointerOver)
+    - Анимация при наведении
+    - Векторная графика сердца
+    
+    Особенности:
+    - Использует ThemeResource для адаптации к темам
+    - Поддерживает стандартные свойства Button
+    - Оптимизирован для производительности
+    - Полностью переопределяемый шаблон
+-->
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:KinopoiskApp.Controls">
 
+    <!--
+        Стиль для FavoriteButton - кнопки "Избранное"
+        Наследует все стандартные свойства Button и добавляет:
+        - Кастомное визуальное представление в виде сердца
+        - Анимацию при наведении
+        - Поддержку состояний IsFavorite через VisualStateManager
+    -->
     <Style TargetType="controls:FavoriteButton">
+        <!-- 
+            Базовые установки стиля:
+            - Цвет наследуется от системы (адаптируется к светлой/темной теме)
+        -->
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+
+        <!-- Полная переопределение шаблона контрола -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:FavoriteButton">
                     <Grid>
+                        <!-- 
+                            Группа визуальных состояний:
+                            - Normal - обычное состояние
+                            - PointerOver - состояние при наведении (с анимацией)
+                        -->
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
+                                        <!-- 
+                                            Анимация прозрачности при наведении:
+                                            - Плавное изменение opacity до 0.8
+                                            - Длительность 0.1 секунды
+                                        -->
                                         <DoubleAnimation Storyboard.TargetName="HeartPath"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.8" Duration="0:0:0.1"/>
@@ -22,7 +61,17 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
+                        <!-- 
+                            Контейнер для векторной графики:
+                            - Фиксированный размер 24x24
+                            - Масштабируется через Viewbox
+                        -->
                         <Viewbox Width="24" Height="24">
+                            <!-- 
+                                Векторное изображение сердца:
+                                - Path.Data содержит SVG-подобную геометрию
+                                - Цвет наследуется через TemplateBinding
+                            -->
                             <Path x:Name="HeartPath"
                                   Fill="{TemplateBinding Foreground}"
                                   Data="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>

@@ -1,16 +1,34 @@
-﻿<ResourceDictionary
+﻿<!-- 
+    Словарь ресурсов, содержащий стили для текстовых элементов приложения.
+    Определяет стили для отображения информации о фильмах.
+-->
+
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!-- 
+        Стиль для заголовка фильма:
+        - Размер шрифта: 18
+        - Жирное начертание
+        - Цвет текста берется из системных ресурсов (высококонтрастный)
+    -->
     <Style TargetType="TextBlock" x:Key="MovieTitleStyle">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
     </Style>
 
+    <!-- 
+        Стиль для года выпуска фильма:
+        - Размер шрифта: 18
+        - Цвет текста средний контраст (из системных ресурсов)
+        - Отступ слева: 10 пикселей
+    -->
     <Style TargetType="TextBlock" x:Key="MovieYearStyle">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
         <Setter Property="Margin" Value="10,0,0,0"/>
     </Style>
+
 </ResourceDictionary>

@@ -1,11 +1,36 @@
-﻿<ResourceDictionary
+﻿<!-- 
+    Основной словарь ресурсов приложения, объединяющий общие стили и шаблоны элементов управления.
+    Содержит ссылки на дополнительные словари стилей через MergedDictionaries.
+    
+    Включенные словари:
+    1. TextStyles.xaml - Стили текстовых элементов (шрифты, размеры, цвета и т.д.)
+    2. FavoriteButton.xaml - Стили и шаблоны для кнопки "Избранное"
+    3. ListViewStyles.xaml - Стили и шаблоны для элементов ListView
+    
+    Используемые пространства имен:
+    - Стандартное пространство имен WPF/XAML
+    - XAML пространство имен для специальных функций XAML
+    - Пользовательское пространство имен для элементов управления приложения KinopoiskApp
+-->
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:KinopoiskApp.Controls">
 
+    <!-- Объединение дополнительных словарей ресурсов -->
     <ResourceDictionary.MergedDictionaries>
+        <!-- Стили для текстовых элементов -->
         <ResourceDictionary Source="ms-appx:///Styles/TextStyles.xaml"/>
+
+        <!-- Стили для кнопки "Избранное" -->
         <ResourceDictionary Source="ms-appx:///Styles/Controls/FavoriteButton.xaml"/>
+
+        <!-- Стили для списков ListView -->
         <ResourceDictionary Source="ms-appx:///Styles/Controls/ListViewStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    <!-- 
+        Здесь могут быть добавлены дополнительные ресурсы, 
+        которые не вынесены в отдельные файлы 
+    -->
 </ResourceDictionary>

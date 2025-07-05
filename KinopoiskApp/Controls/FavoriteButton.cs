@@ -1,4 +1,18 @@
-﻿using System;
+﻿/// <summary>
+/// Кастомный кнопочный контрол для добавления/удаления фильмов в избранное
+/// Реализует визуальную индикацию состояния через анимации и диалоговые сообщения
+/// 
+/// Особенности:
+/// - Поддерживает двустороннюю привязку через DependencyProperty
+/// - Автоматически переключает визуальные состояния
+/// - Показывает confirmation-диалог при добавлении
+/// - Совместим с стандартными стилями Button
+/// 
+/// Использование:
+/// <FavoriteButton IsFavorite="{Binding IsFavorite, Mode=TwoWay}"/>
+/// </summary>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +24,10 @@ namespace KinopoiskApp.Controls
 {
     public sealed class FavoriteButton : Button
     {
+        /// <summary>
+        /// Инициализирует кнопку и подписывается на события
+        /// Устанавливает DefaultStyleKey и обработчик клика
+        /// </summary>
         public FavoriteButton()
         {
             DefaultStyleKey = typeof(FavoriteButton);
@@ -21,6 +39,9 @@ namespace KinopoiskApp.Controls
             };
         }
 
+        /// <summary>
+        /// Показывает диалоговое окно подтверждения добавления в избранное
+        /// </summary>
         private async void ShowAddedToFavoritesMessage()
         {
             var dialog = new ContentDialog()
@@ -32,7 +53,9 @@ namespace KinopoiskApp.Controls
             await dialog.ShowAsync();
         }
 
-        // Dependency Property для состояния "Избранное"
+        /// <summary>
+        /// DependencyProperty для состояния "Избранное"
+        /// </summary>я
         public static readonly DependencyProperty IsFavoriteProperty =
             DependencyProperty.Register(
                 nameof(IsFavorite),
@@ -40,12 +63,20 @@ namespace KinopoiskApp.Controls
                 typeof(FavoriteButton),
                 new PropertyMetadata(false, OnIsFavoriteChanged));
 
+        /// <summary>
+        /// Получает или устанавливает состояние избранного
+        /// При установке автоматически обновляет визуальное состояние
+        /// </summary>
         public bool IsFavorite
         {
             get => (bool)GetValue(IsFavoriteProperty);
             set => SetValue(IsFavoriteProperty, value);
         }
 
+        /// <summary>
+        /// Обработчик изменения состояния IsFavorite
+        /// Автоматически переключает визуальные состояния
+        /// </summary>
         private static void OnIsFavoriteChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is FavoriteButton button)
@@ -54,6 +85,9 @@ namespace KinopoiskApp.Controls
             }
         }
 
+        /// <summary>
+        /// Применяет шаблон и инициализирует начальное состояние
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

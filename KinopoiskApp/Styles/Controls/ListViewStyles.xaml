@@ -1,17 +1,51 @@
-﻿<ResourceDictionary
+﻿<!--
+    Стили для элементов списка фильмов
+    Оптимизированы для отображения кинофильмов в ListView
+    
+    Содержит:
+    1. Базовый стиль ListView - убирает стандартные отступы
+    2. Кастомный стиль ListViewItem - для карточек фильмов
+    
+    Особенности:
+    - Использует системные ресурсы для адаптации к темам
+    - Минимальные отступы для плотного расположения
+    - Поддержка темной/светлой темы через ThemeResource
+-->
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!--
+        Базовый стиль для всех ListView в приложении
+        Убирает стандартные отступы и фон для чистого вида
+    -->
     <Style TargetType="ListView">
+        <!-- Убирает внутренние отступы списка -->
         <Setter Property="Padding" Value="0"/>
+
+        <!-- Убирает внешние отступы -->
         <Setter Property="Margin" Value="0"/>
+
+        <!-- Прозрачный фон для интеграции с родительскими элементами -->
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 
+    <!--
+        Стиль для элементов списка фильмов (MovieListItemStyle)
+        Оптимизирован для отображения карточек фильмов
+    -->
     <Style TargetType="ListViewItem" x:Key="MovieListItemStyle">
+        <!-- Убирает внутренние отступы элемента -->
         <Setter Property="Padding" Value="0"/>
+
+        <!-- Отступ только снизу для разделения элементов -->
         <Setter Property="Margin" Value="0,0,0,5"/>
+
+        <!-- Растягивает содержимое на всю ширину -->
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
+
+        <!-- Фон из системных ресурсов (адаптируется к теме) -->
+        <Setter Property="Background" 
+                Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
     </Style>
 </ResourceDictionary>
