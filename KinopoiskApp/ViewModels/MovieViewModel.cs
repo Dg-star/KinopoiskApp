@@ -17,16 +17,16 @@ namespace KinopoiskApp.ViewModels
             set => SetField(ref _isFavorite, value);
         }
         public string Title { get; }
-        public int Year { get; }
+        public string Year { get; }
         public string TitleWithYear => $"{Title} ({Year})";
-
+        public string PosterUrl { get; }
+        public string Rating { get; }
         public MovieViewModel(Movie movie)
         {
-            Title = movie.Title;
-            Year = movie.Year;
-
-            if (Title == "Побег из Шоушенка")
-                IsFavorite = true;
+            Title = movie.Title ?? "Без названия";
+            Year = movie.Year ?? "N/A";
+            Rating = !string.IsNullOrEmpty(movie.Rating) ? $"Рейтинг: {movie.Rating}" : "Рейтинг отсутствует";
+            PosterUrl = movie.PosterUrl;
         }
     }
 }

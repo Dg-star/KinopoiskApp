@@ -9,6 +9,8 @@ namespace KinopoiskApp.Services.Interfaces
 {
     public interface IMovieService
     {
-        IEnumerable<Movie> GetAllMovies();
+        Task<List<Movie>> GetTopMoviesAsync();
+        Task ClearCacheAsync();
+        Task<bool> IsCacheValidAsync();
     }
 }

@@ -29,16 +29,18 @@ namespace KinopoiskApp
         public App()
         {
             this.InitializeComponent();
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-            _serviceProvider = services.BuildServiceProvider();
-
+            ConfigureServices();
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        private void ConfigureServices()
         {
-            services.AddSingleton<IMovieService, MovieService>();
+            var services = new ServiceCollection();
+
+            services.AddSingleton<KinopoiskApiService>();
+
             services.AddTransient<MainViewModel>();
+
+            ServiceProvider = services.BuildServiceProvider();
         }
 
 

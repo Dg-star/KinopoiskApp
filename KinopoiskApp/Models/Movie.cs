@@ -1,19 +1,33 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KinopoiskApp.Models
 {
+    [DebuggerDisplay("{Title} ({Year})")]
     public class Movie
     {
-        public string Title { get; }
-        public int Year { get; }
+        [JsonProperty("filmId")]
+        public int Id { get; set; }
 
-        public Movie(string title, int year)
-        {
-            Title = title; Year = year;
-        }
+        [JsonProperty("nameRu")]
+        public string Title { get; set; }
+
+        [JsonProperty("year")]
+        public string Year { get; set; } 
+
+        [JsonProperty("posterUrl")]
+        public string PosterUrl { get; set; }
+
+        [JsonProperty("rating")]
+        public string Rating { get; set; }
+
+        public bool IsFavorite { get; set; }
+
+        public override string ToString() => $"{Title} ({Year})";
     }
 }
