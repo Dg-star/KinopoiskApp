@@ -4,18 +4,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:KinopoiskApp.ViewModels"
+    xmlns:controls="using:KinopoiskApp.Controls"
     mc:Ignorable="d">
 
-    <Page.DataContext>
-        <viewModels:MainViewModel/>
-    </Page.DataContext>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Styles/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
-        <ListView ItemsSource="{Binding Movies}" Margin="20">
+        <ListView ItemsSource="{Binding Movies}"
+                  ItemContainerStyle="{StaticResource MovieListItemStyle}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding TitleWithYear}" FontSize="18" Padding="10"/>
+                    <Grid Padding="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource MovieTitleStyle}"/>
+                            <TextBlock Text="{Binding Year}" Style="{StaticResource MovieYearStyle}"/>
+                        </StackPanel>
+
+                        <controls:FavoriteButton 
+                            Grid.Column="1"
+                            IsFavorite="{Binding IsFavorite, Mode=TwoWay}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

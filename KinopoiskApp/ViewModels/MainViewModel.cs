@@ -1,23 +1,31 @@
-﻿using KinopoiskApp.Services.Interfaces;
-using System;
+﻿using KinopoiskApp.Models;
+using KinopoiskApp.Services;
+using KinopoiskApp.Services.Interfaces;
+using KinopoiskApp.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskApp.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
-        private readonly IMovieService _movieService;
+        private List<MovieViewModel> _movies;
 
-        public List<MovieViewModel> Movies { get; }
+        public List<MovieViewModel> Movies
+        {
+            get => _movies;
+            set => SetField(ref _movies, value);
+        }
 
         public MainViewModel(IMovieService movieService)
         {
-            _movieService = movieService;
-            Movies = _movieService.GetAllMovies()
-                .Select(movie => new MovieViewModel(movie))
+            LoadMovies(movieService);
+        }
+
+        private void LoadMovies(IMovieService movieService)
+        {
+            Movies = movieService.GetAllMovies()
+                .Select(m => new MovieViewModel(m))
                 .ToList();
         }
     }

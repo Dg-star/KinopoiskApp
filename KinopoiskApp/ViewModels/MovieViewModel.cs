@@ -8,8 +8,14 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace KinopoiskApp.ViewModels
 {
-    public class MovieViewModel
+    public class MovieViewModel : BaseViewModel
     {
+        private bool _isFavorite;
+        public bool IsFavorite
+        {
+            get => _isFavorite;
+            set => SetField(ref _isFavorite, value);
+        }
         public string Title { get; }
         public int Year { get; }
         public string TitleWithYear => $"{Title} ({Year})";
@@ -18,6 +24,9 @@ namespace KinopoiskApp.ViewModels
         {
             Title = movie.Title;
             Year = movie.Year;
+
+            if (Title == "Побег из Шоушенка")
+                IsFavorite = true;
         }
     }
 }

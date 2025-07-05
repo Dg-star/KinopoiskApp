@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using KinopoiskApp.ViewModels;
+using Windows.UI.Xaml.Controls;
 
 namespace KinopoiskApp.Views
 {
@@ -9,7 +10,8 @@ namespace KinopoiskApp.Views
     {
         public MainPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+           
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:KinopoiskApp.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Styles/TextStyles.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Styles/Controls/FavoriteButton.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Styles/Controls/ListViewStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
