@@ -13,7 +13,7 @@ namespace KinopoiskApp
 {
     public sealed partial class App : Application
     {
-        // Статические свойства для доступа к сервисам из любого места приложения
+        
         public static KinopoiskApiService ApiService { get; private set; }
         public static MainViewModel MainVM { get; private set; }
         public static List<MovieViewModel> Movies { get; set; }
@@ -26,13 +26,11 @@ namespace KinopoiskApp
 
         private void InitializeServices()
         {
-            // Инициализация сервисов вручную
+            
             ApiService = new KinopoiskApiService();
-            MainVM = new MainViewModel(ApiService); // Если MainViewModel зависит от ApiService
+            MainVM = new MainViewModel(ApiService); 
 
             Movies = new List<MovieViewModel>();
-
-            // Можно добавить инициализацию других сервисов по мере необходимости
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -56,7 +54,6 @@ namespace KinopoiskApp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            // При необходимости сохраняем состояние
             deferral.Complete();
         }
     }
