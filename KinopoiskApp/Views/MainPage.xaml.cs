@@ -10,10 +10,12 @@ namespace KinopoiskApp.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainViewModel ViewModel { get; } = App.ServiceProvider.GetService<MainViewModel>();
+        public MainViewModel ViewModel { get; }
 
         public MainPage()
         {
+            ViewModel = App.MainVM;
+
             this.InitializeComponent();
             Debug.WriteLine("[DEBUG] MainPage инициализирована");
             this.DataContext = ViewModel;
